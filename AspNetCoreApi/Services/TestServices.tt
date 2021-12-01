@@ -1,0 +1,38 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+namespace AspNetCoreApi.Services
+{
+<#
+var serviceCount = 30;
+for (var i = 1; i < serviceCount; i++)
+{
+#>
+    public class Service<#=i #> : IService
+    {
+<#
+if (i < serviceCount - 2)
+{
+#>
+        public Service<#=i #>(Service<#=i+1 #> serviceA, Service<#=i+2 #> serviceB)
+<#
+}
+else
+{
+#>
+        public Service<#=i #>()
+<#
+}
+#>
+        {
+        }
+    }
+
+<#
+}
+#>
+    public interface IService { }    
+}
