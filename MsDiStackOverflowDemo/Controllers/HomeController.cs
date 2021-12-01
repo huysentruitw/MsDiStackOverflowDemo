@@ -1,3 +1,4 @@
+﻿using MsDiStackOverflowDemo.Services;
 using System.Diagnostics;
 using System.Web.Mvc;
 
@@ -5,6 +6,11 @@ namespace MsDiStackOverflowDemo.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController(Service1 service)
+        {
+            Debug.Assert(service != null);
+        }
+
         public ActionResult Index()
         {
             return View();
